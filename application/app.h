@@ -15,15 +15,15 @@ typedef struct{
 
 
 //FUNCTIONS
-void birthdayList(FIELDS _fields, int index);// litagem por aniversário
-void ascendingOrder(FIELDS _fields, int index);//ordem alfabética
-void insertData(FIELDS _fields, int index);//inserção de dados de cada "Contato";
-void updateData(FIELDS _fields, int index);
-void removeData(FIELDS _fields, int index);
+void birthdayList(FIELDS _fields[], int *index);// litagem por aniversário
+void ascendingOrder(FIELDS _fields[], int *index);//ordem alfabética
+void insertData(FIELDS _fields[], int *index);//inserção de dados de cada "Contato";
+void updateData(FIELDS _fields[], int *index);
+void removeData(FIELDS _fields[], int *index);
 
 void close();
 
-FIELDS* searchData(FIELDS _fields, int index);// essa função irá retornar um "Contato ou mais caso encontre! (Mas aindo tô pensando qual a melhor forma de fazer)."
+FIELDS* searchData(FIELDS _fields[], int *index);// essa função irá retornar um "Contato ou mais caso encontre! (Mas aindo tô pensando qual a melhor forma de fazer)."
 //END FUNCTIONS
 
 

@@ -17,27 +17,26 @@ int main()
 {
     int i;
     setlocale(LC_ALL, "Portuguese");
-
-    Constructor(_fields, &index);
-
-    switch(main_menu()){
-        case 1:
-            insertData();
-            break;
-        case 2:
-            break;
-        case 3:
-            break;
-        case 4:
-            break;
-        case 5:
-            break;
-        case 6:
-            break;
-        case 7:
-            break;
+    while(1){
+        switch(main_menu()){
+            case 1:
+                insertData(_fields, &index);
+                break;
+            case 2:
+                break;
+            case 3:
+                removeData(_fields, &index);
+                break;
+            case 4:
+                break;
+            case 5:
+                break;
+            case 6:
+                break;
+            case 7:
+                break;
+        }
     }
-
 
     for(i = 0; i < index; i++){
         printf("%s\n", _fields[i].name);
