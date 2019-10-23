@@ -9,7 +9,7 @@ typedef struct{
     char name[30];
     char land_line[11], phone_number[12];
     char situation;
-    int modified;
+    int index;
     DATE birth_date;
 }FIELDS;//Essa aqui é um registro, eu coloquei com o typedef Pra criar um tipo novo e eu poder usar lá em baixo!
 
@@ -23,7 +23,7 @@ void removeData(FIELDS _fields[], int *index);
 
 void close();
 
-FIELDS searchData(FIELDS _fields[], int *index);// essa função irá retornar um "Contato ou mais caso encontre! (Mas aindo tô pensando qual a melhor forma de fazer)."
+FIELDS *searchData(FIELDS _fields[], int *index);// essa função irá retornar um "Contato" ou mais caso encontre! (Mas aindo tô pensando qual a melhor forma de fazer).
 //END FUNCTIONS
 
 #endif // APP_H_INCLUDED

@@ -30,39 +30,41 @@ void insertData(FIELDS _fields[], int *index){
     strcpy(_fields[*index].phone_number, phone_number);
 
     _fields[*index].situation = 0;
-    _fields[*index].modified = 0;
+    _fields[*index].index = *index;
 
     *index = *index + 1;
 }
 
-void updateData(FIELDS _fields[], int *index){}
+void updateData(FIELDS _fields[], int *index)
+{
+
+}
 
 void removeData(FIELDS _fields[], int *index)
 {
-	FIELDS _record  = searchData(_fields, index);
-
-	_record.situation = 1;
-
-	_fields[_record.modified] = _record;
+	FIELDS *_record = searchData(_fields, index);
+    printf("\nSTEP 1\n");//
+    _record->situation = 1;//
+    printf("\nSTEP 2\n");//
+	_fields[_record->index] = *_record;//
 }
 
 
 
-FIELDS searchData(FIELDS _fields[], int *index)
+FIELDS *searchData(FIELDS _fields[], int *index)
 {
-    FIELDS _records;
-    int i;
+    FIELDS _records[10];
+    int i, count = 0;
     char str4search [21] = "";
-    char *aux;
 
     printf("Digite o nome que deseja procurar: ");
     scanf("%s", &str4search);
 
     for(i = 0; i < *index; i++){
-        if(strcasecmp(_fields[i].name, str4search)){
-            printf("%s", _fields[i].name);
-            _records = _fields[i];
-            _records.modified = i;
+        if(strcasecmp(_fields[i].name, str4search) && count < 10 && _fields[i].situation==0){
+            printf("índice: %d\nNome: %s\n---------------------------\n", _fields[i].index, _fields[i].name);
+            _records[count] = _fields[i];
+            count++;
 		}
     }
     return _records;
