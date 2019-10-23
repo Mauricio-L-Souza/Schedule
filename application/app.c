@@ -39,7 +39,7 @@ void updateData(FIELDS _fields[], int *index){}
 
 void removeData(FIELDS _fields[], int *index)
 {
-	FIELDS _record  = searchData(_fields, index)[0];
+	FIELDS _record  = searchData(_fields, index);
 
 	_record.situation = 1;
 
@@ -48,10 +48,10 @@ void removeData(FIELDS _fields[], int *index)
 
 
 
-FIELDS* searchData(FIELDS _fields[], int *index)
+FIELDS searchData(FIELDS _fields[], int *index)
 {
-    FIELDS _records[15];
-    int i, j = 0 ;
+    FIELDS _records;
+    int i;
     char str4search [21] = "";
     char *aux;
 
@@ -61,9 +61,8 @@ FIELDS* searchData(FIELDS _fields[], int *index)
     for(i = 0; i < *index; i++){
         if(strcasecmp(_fields[i].name, str4search)){
             printf("%s", _fields[i].name);
-            _records[j] = _fields[i];
-            _records[j].modified = i;
-        	j++;
+            _records = _fields[i];
+            _records.modified = i;
 		}
     }
     return _records;

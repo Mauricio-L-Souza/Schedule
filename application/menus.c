@@ -13,16 +13,18 @@ int main_menu(){
         printf("6 - Acssar lixeira\n");
         printf("7 - Sair\n");
         printf("\n==================================================================\n");
+
         printf("\ndigite a opção desejada:\n");
         printf(">> ");
+
         scanf("%d", &op);
 
-        if(op>=1 && op <= 7)break;
-
+        if(op>=1 && op <= 7) break;
         else{
             printf("A operação escolhida não existe!");
             getch();
         }
+
     }while(1);
 
     return op;
@@ -41,8 +43,10 @@ int list_menu ()
         printf("2 - Listar por aniversariante do mês\n");
         printf("3 - Voltar ao menu principal\n");
         printf("\n==================================================================\n");
+
         printf("\nDigite a opção desejada:\n");
         printf(">> ");
+
         scanf("%d", &op);
 
         if(op>=1 && op <= 3) break;
@@ -50,6 +54,7 @@ int list_menu ()
             printf("A operação escolhida não existe!");
             getch();
         }
+
     }while(1);
 
     return op;
