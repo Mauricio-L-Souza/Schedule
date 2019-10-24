@@ -23,7 +23,7 @@ void removeData(FIELDS _fields[], int *index);
 
 void close();
 
-FIELDS *searchData(FIELDS _fields[], int *index);// essa função irá retornar um "Contato" ou mais caso encontre! (Mas aindo tô pensando qual a melhor forma de fazer).
+void searchData(FIELDS _records[], int *index, FIELDS _records[], int option);// essa função irá retornar um "Contato" ou mais caso encontre! (Mas aindo tô pensando qual a melhor forma de fazer).
 //END FUNCTIONS
 
 #endif // APP_H_INCLUDED

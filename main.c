@@ -15,7 +15,8 @@ FIELDS _fields[10];
 
 int main()
 {
-    int i, op;
+    int i, op, _last_value = 0;
+    FIELDS _records[15];
     setlocale(LC_ALL, "Portuguese");
     op = 0;
 

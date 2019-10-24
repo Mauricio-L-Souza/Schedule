@@ -41,7 +41,8 @@ int list_menu ()
         printf("\n LISTAGEM \n");
         printf("\n1 - Listar por ordem alfabetica.\n");
         printf("2 - Listar por aniversariante do mês\n");
-        printf("3 - Voltar ao menu principal\n");
+        printf("3 - Listar todos")
+        printf("4 - Voltar ao menu principal\n");
         printf("\n==================================================================\n");
 
         printf("\nDigite a opção desejada:\n");
@@ -49,7 +50,7 @@ int list_menu ()
 
         scanf("%d", &op);
 
-        if(op>=1 && op <= 3) break;
+        if(op>=1 && op <= 4) break;
         else{
             printf("A operação escolhida não existe!");
             getch();
