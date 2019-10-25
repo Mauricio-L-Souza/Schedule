@@ -1,6 +1,6 @@
 #ifndef APP_H_INCLUDED
 #define APP_H_INCLUDED
-
+# define SIZE_SEARCH 10
 typedef struct{
     char d[3], m[3], y[5];
 }DATE;// um registro separado para a data!
@@ -23,7 +23,7 @@ void removeData(FIELDS _fields[], int *index);
 
 void close();
 
-void searchData(FIELDS _records[], int *index, FIELDS _records[], int option);// essa função irá retornar um "Contato" ou mais caso encontre! (Mas aindo tô pensando qual a melhor forma de fazer).
+void searchData(FIELDS _records[], int *index, FIELDS _searchedData[], int option, int *lastItem);// essa função irá retornar um "Contato" ou mais caso encontre! (Mas aindo tô pensando qual a melhor forma de fazer).
 //END FUNCTIONS
 
 #endif // APP_H_INCLUDED
