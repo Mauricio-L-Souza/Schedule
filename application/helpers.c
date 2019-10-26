@@ -5,16 +5,12 @@
 #include "helpers.h"
 #include "app.h"
 
-char *getStringValue(char *text) // Não serve pra muita coisa, mas amanhão vou pedir ajuda pro professor sobre isso.
-{									//essa função irá encurtar a máximo pra não ficar colocando printf e scanf toda hora
-    static char value[50] = "";
-
+char *getStringValue(char *text, char value_to_return[])
+{
     printf("%s", text);
-    scanf("%s", &value);
+    scanf("%s", value_to_return);
 
     fflush(stdin);
-
-    return value;
 }
 
 DATE inputDate(){
@@ -22,12 +18,15 @@ DATE inputDate(){
     DATE _date;
 
     while(1){
-        char *date_string = getStringValue("Insira uma data ex.:[01/12/2022]: ");// ela é usada aqui pra pegar a data!
+        char date_string[15];
+        getStringValue("Insira uma data ex.:[01/12/2022]: ", date_string);
 
         char *date_values = "";
         if(strlen(date_string) == 10){
             date_values = strtok(date_string, "/");
         }
+
+        printf("%s\n", date_string);
 
         if(strlen(date_values) == 2 && (atoi(date_values)>=1 && atoi(date_values)<=31))
         {
@@ -45,8 +44,6 @@ DATE inputDate(){
                     return _date;
                 }
             }
-        }else{
-            continue;
         }
     }
 }

@@ -76,6 +76,10 @@ void searchData(FIELDS _records[], int *index, FIELDS _searchedData[], int optio
             _searchedData[count] = _records[i];
             printf("searched_data.name: %s\n", _searchedData[count].name);
             count++;
+		}else if(strcmp(_records[i].name, str4search)==0){
+            _searchedData[count] = _records[i];
+            printf("searched_data.name: %s\n", _searchedData[count].name);
+            count++;
 		}
     }
 
