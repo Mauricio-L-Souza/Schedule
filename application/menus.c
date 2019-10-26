@@ -23,6 +23,7 @@ int main_menu(){
         else{
             printf("A operação escolhida não existe!");
             getch();
+            op = 0;
         }
 
     }while(1);
@@ -54,6 +55,7 @@ int list_menu ()
         else{
             printf("A operação escolhida não existe!");
             getch();
+            op = 0;
         }
 
     }while(1);
