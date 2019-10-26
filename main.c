@@ -76,16 +76,18 @@ int main()
 
 
     for(i = 0; i < index; i++){
-        printf("%s\n", _fields[i].name);
-        printf("%s/%s/%s\n", _fields[i].birth_date.d, _fields[i].birth_date.m, _fields[i].birth_date.y);
-        printf("%s\n", _fields[i].land_line);
-        printf("%s\n", _fields[i].phone_number);
+        printf("\n==================================================\n");
+        printf("\nNome: %s\n", _fields[i].name);
+        printf("Data de nascimento: %s/%s/%s\n", _fields[i].birth_date.d, _fields[i].birth_date.m, _fields[i].birth_date.y);
+        printf("Telefone fixo: %s\n", _fields[i].land_line);
+        printf("Celular: %s\n", _fields[i].phone_number);
 
         if(_fields[i].situation == 1){
-            printf("Na lixeira");
+            printf("Situação: Na lixeira\n");
         }else{
-            printf("Ativo");
+            printf("Situação: Ativo\n");
         }
+        printf("\n==================================================\n");
     }
 
     return 0;
