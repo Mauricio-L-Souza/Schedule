@@ -10,40 +10,39 @@
 
 //GLOBALS
 int index = 0;
-FIELDS _fields[10];
+FIELDS _contacts[10];
 //END GLOBALS
 
 int main()
 {
-    int i, op, _last_value = 0;
-    FIELDS _records[15];
+    int i, op;
     setlocale(LC_ALL, "Portuguese");
     op = 0;
 
     //DATA FOR TESTS
-    strcpy(_fields[0].name, "Mauricio");
-    strcpy(_fields[0].land_line, "32220000");
+    strcpy(_contacts[0].name, "Mauricio");
+    strcpy(_contacts[0].land_line, "32220000");
 
-    strcpy(_fields[0].phone_number, "32220000");
+    strcpy(_contacts[0].phone_number, "32220000");
 
-    _fields[0].situation = 0;
-    _fields[0].index = 0;
+    _contacts[0].situation = 0;
+    _contacts[0].index = 0;
 
-    strcpy(_fields[1].name, "Mauro");
-    strcpy(_fields[1].land_line, "32220000");
+    strcpy(_contacts[1].name, "Mauro");
+    strcpy(_contacts[1].land_line, "32220000");
 
-    strcpy(_fields[1].phone_number, "32220000");
+    strcpy(_contacts[1].phone_number, "32220000");
 
-    _fields[1].situation = 0;
-    _fields[1].index = 1;
+    _contacts[1].situation = 0;
+    _contacts[1].index = 1;
 
-    strcpy(_fields[2].name, "Maria");
-    strcpy(_fields[2].land_line, "32220000");
+    strcpy(_contacts[2].name, "Maria");
+    strcpy(_contacts[2].land_line, "32220000");
 
-    strcpy(_fields[2].phone_number, "32220000");
+    strcpy(_contacts[2].phone_number, "32220000");
 
-    _fields[2].situation = 1;
-    _fields[2].index = 2;
+    _contacts[2].situation = 1;
+    _contacts[2].index = 2;
 
     index = 3;
     //END DATA FOR TESTS
@@ -51,16 +50,16 @@ int main()
     while(op != 7){
         switch(main_menu()){
             case 1:
-                insertData(_fields, &index);
+                insertData(_contacts, &index);
                 break;
             case 2:
-                updateData(_fields, &index);
+                updateData(_contacts, &index);
                 break;
             case 3:
-                removeData(_fields, &index);
+                removeData(_contacts, &index);
                 break;
             case 4:
-                //searchData(_fields, &index);
+                //searchData(_contacts, &index);
                 break;
             case 5:
 
@@ -77,12 +76,12 @@ int main()
 
     for(i = 0; i < index; i++){
         printf("\n==================================================\n");
-        printf("\nNome: %s\n", _fields[i].name);
-        printf("Data de nascimento: %s/%s/%s\n", _fields[i].birth_date.d, _fields[i].birth_date.m, _fields[i].birth_date.y);
-        printf("Telefone fixo: %s\n", _fields[i].land_line);
-        printf("Celular: %s\n", _fields[i].phone_number);
+        printf("\nNome: %s\n", _contacts[i].name);
+        printf("Data de nascimento: %s/%s/%s\n", _contacts[i].birth_date.d, _contacts[i].birth_date.m, _contacts[i].birth_date.y);
+        printf("Telefone fixo: %s\n", _contacts[i].land_line);
+        printf("Celular: %s\n", _contacts[i].phone_number);
 
-        if(_fields[i].situation == 1){
+        if(_contacts[i].situation == 1){
             printf("Situação: Na lixeira\n");
         }else{
             printf("Situação: Ativo\n");
