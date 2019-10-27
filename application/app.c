@@ -1,32 +1,24 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <ctype.h>
 
 #include "app.h"
 #include "helpers.h"
 
-void Destructor(){
-
-}
 
 void insertData(FIELDS _fields[], int *index){
     char name[21] = "", land_line[12] = "", phone_number[12] = "";
 
-    printf("Nome: ");
-    scanf("%s", &name);
-
+    getStringValue("Nome: ", name);
     strcpy(_fields[*index].name, name);
 
     _fields[*index].birth_date = inputDate();
 
-    printf("Telefone fixo: ");
-    scanf("%s", &land_line);
-
+    getStringValue("Telefone fixo: ", land_line);
     strcpy(_fields[*index].land_line, land_line);
 
-    printf("Celular: ");
-    scanf("%s", &phone_number);
-
+    getStringValue("Celular: ", phone_number);
     strcpy(_fields[*index].phone_number, phone_number);
 
     _fields[*index].situation = 0;
@@ -47,9 +39,7 @@ void removeData(FIELDS _fields[], int *index)
 
     searchData(_fields, index, _records, 0, &lastItem);
 
-    printf("\nSTEP 1\n");
-
-    listALL(_records, lastItem);
+    if (lastItem > 0) listALL(_records, lastItem);
 
 
     printf("Escolha um deles para prosseguir: ");
@@ -72,23 +62,30 @@ void searchData(FIELDS _records[], int *index, FIELDS _searchedData[], int optio
 
     int count = 0, i;
     for(i = 0; i < *index; i++){
-        if(strcasecmp(_records[i].name, str4search) && count < 10 && _records[i].situation == option){
+        if(strcmpi(_records[i].name, str4search)==0)
+        {
             _searchedData[count] = _records[i];
-            printf("searched_data.name: %s\n", _searchedData[count].name);
             count++;
-		}else if(strcmp(_records[i].name, str4search)==0){
+            break;
+		}else if(strcasecmp(_records[i].name, str4search) &&
+                (_records[i].name[0] == str4search[0] || _records[i].name[0] == toupper(str4search[0])) &&
+                (count < 10) && (_records[i].situation == option))
+        {
             _searchedData[count] = _records[i];
-            printf("searched_data.name: %s\n", _searchedData[count].name);
             count++;
 		}
     }
 
     *lastItem = count;
 }
+void open(){}
 
 void close(FIELDS _fields[], int *index){}
 
-void ascendingOrder(FIELDS _fields[], int *index){}
+void ascendingOrder(FIELDS _fields[], int *last_position)
+{
+
+}
 
 void birthdayList(FIELDS _fields[], int *index){}
 
@@ -97,7 +94,9 @@ void listALL(FIELDS _records[], int tam)
     int i;
 
     for (i = 0; i < tam; i++){
-        printf("Índice: %d\n", _records[i].index);
-        printf("Nome: %s\n", _records[i].name);
+        printf("\n================================\n");
+        printf("\nContato %d\n", i+1);
+        printf("\tÍndice: %d\n", _records[i].index);
+        printf("\tNome: %s\n", _records[i].name);
     }
 }

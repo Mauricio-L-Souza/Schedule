@@ -16,7 +16,7 @@ typedef struct{
 
 //FUNCTIONS
 void birthdayList(FIELDS _fields[], int *index);// litagem por aniversário
-void ascendingOrder(FIELDS _fields[], int *index);//ordem alfabética
+void ascendingOrder(FIELDS _fields[], int *last_position);//ordem alfabética
 void insertData(FIELDS _fields[], int *index);//inserção de dados de cada "Contato";
 void updateData(FIELDS _fields[], int *index);
 void removeData(FIELDS _fields[], int *index);

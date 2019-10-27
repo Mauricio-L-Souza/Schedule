@@ -1,3 +1,6 @@
+#include <stdlib.h>
+#include <stdio.h>
+
 #include "menus.h"
 
 int main_menu(){
@@ -21,9 +24,11 @@ int main_menu(){
 
         if(op>=1 && op <= 7) break;
         else{
-            printf("A operação escolhida não existe!");
-            getch();
-            op = 0;
+            printf("A operação escolhida não existe!\n");
+
+            system("pause");
+            fflush(stdin);
+            continue;
         }
 
     }while(1);
@@ -33,7 +38,7 @@ int main_menu(){
 
 int list_menu ()
 {
-    int op = 0;
+    int op;
     do{
         op = 0;
         system("cls || clear");
@@ -53,9 +58,11 @@ int list_menu ()
 
         if(op>=1 && op <= 4) break;
         else{
-            printf("A operação escolhida não existe!");
-            getch();
-            op = 0;
+            printf("A operação escolhida não existe!\n");
+
+            system("pause");
+            fflush(stdin);
+            continue;
         }
 
     }while(1);

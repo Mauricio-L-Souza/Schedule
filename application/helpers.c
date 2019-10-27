@@ -47,10 +47,3 @@ DATE inputDate(){
         }
     }
 }
-
-int compareString(char *str, char *str2compare)
-{
-    int lenght = strlen(str), i;
-    char aux_str[50];
-
-}
