@@ -1,6 +1,8 @@
 #ifndef APP_H_INCLUDED
 #define APP_H_INCLUDED
+
 # define SIZE_SEARCH 10
+
 typedef struct{
     char d[3], m[3], y[5];
 }DATE;// um registro separado para a data!
@@ -17,9 +19,9 @@ typedef struct{
 //FUNCTIONS
 void birthdayList(FIELDS _fields[], int *index);// litagem por aniversário
 void ascendingOrder(FIELDS _fields[], int *last_position);//ordem alfabética
-void insertData(FIELDS _fields[], int *index);//inserção de dados de cada "Contato";
-void updateData(FIELDS _fields[], int *index);
-void removeData(FIELDS _fields[], int *index);
+void create(FIELDS _fields[], int *index);//inserção de dados de cada "Contato";
+void update(FIELDS _fields[], int *index);
+void _remove(FIELDS _fields[], int *index);
 
 void close();
 

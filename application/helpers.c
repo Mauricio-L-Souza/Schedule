@@ -5,7 +5,7 @@
 #include "helpers.h"
 #include "app.h"
 
-char *getStringValue(char *text, char value_to_return[])
+char getStringValue(char *text, char value_to_return[])
 {
     printf("%s", text);
     scanf("%s", value_to_return);
@@ -26,7 +26,6 @@ DATE inputDate(){
             date_values = strtok(date_string, "/");
         }
 
-        printf("%s\n", date_string);
 
         if(strlen(date_values) == 2 && (atoi(date_values)>=1 && atoi(date_values)<=31))
         {
@@ -47,3 +46,18 @@ DATE inputDate(){
         }
     }
 }
+
+void str_to_upper(char value[], char value_to_return[])
+{
+    int i;
+    char aux = ' ';
+
+    if(strcmp(value, "") == 0) return;
+
+    for(i = 0; i < strlen(value); i++){
+        aux = toupper(value[i]);
+        value_to_return[i] = aux;
+    }
+}
+
+

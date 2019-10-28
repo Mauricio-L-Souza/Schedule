@@ -15,7 +15,9 @@ FIELDS _contacts[10];
 
 int main()
 {
-    int i, op;
+    FIELDS _records[SIZE_SEARCH];
+
+    int i, op, last_index;
     setlocale(LC_ALL, "Portuguese");
     op = 0;
 
@@ -50,16 +52,17 @@ int main()
     while(op != 7){
         switch(main_menu()){
             case 1:
-                insertData(_contacts, &index);
+                create(_contacts, &index);
                 break;
             case 2:
-                updateData(_contacts, &index);
+                update(_contacts, &index);
                 break;
             case 3:
-                removeData(_contacts, &index);
+                _remove(_contacts, &index);
                 break;
             case 4:
-                //searchData(_contacts, &index);
+                searchData(_contacts, &index, _records, 0, &last_index);
+                listALL(_records, last_index);
                 break;
             case 5:
 
@@ -74,7 +77,7 @@ int main()
     }
 
 
-    for(i = 0; i < index; i++){
+    /*for(i = 0; i < index; i++){
         printf("\n==================================================\n");
         printf("\nNome: %s\n", _contacts[i].name);
         printf("Data de nascimento: %s/%s/%s\n", _contacts[i].birth_date.d, _contacts[i].birth_date.m, _contacts[i].birth_date.y);
@@ -87,7 +90,7 @@ int main()
             printf("Situação: Ativo\n");
         }
         printf("\n==================================================\n");
-    }
+    }*/
 
     return 0;
 }
