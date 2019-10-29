@@ -90,13 +90,22 @@ void searchData(FIELDS _records[], int *index, FIELDS _searchedData[], int optio
 
     *lastItem = count;
 }
-void open()
+
+void close(FIELDS _records[], int *index)
 {
 
 }
 
-void close(FIELDS _contacts[], int *index)
+void open(FIELDS _records[], int *index)
 {
+    FILE *_file = fopen("_contacts.txtx", "ab+");
+
+    if(_file != NULL){
+        printf("Algo errado\n");
+        exit(1);
+    }
+
+    fseek(&_file, -siseof(FIELDS), SEEK_END);
 
 }
 

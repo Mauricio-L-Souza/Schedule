@@ -23,7 +23,8 @@ void create(FIELDS _fields[], int *index);//inserção de dados de cada "Contato";
 void update(FIELDS _fields[], int *index);
 void _remove(FIELDS _fields[], int *index);
 
-void close();
+void close(FIELDS _records[], int *index);
+void open(FIELDS _records[], int *index);
 
 void searchData(FIELDS _records[], int *index, FIELDS _searchedData[], int option, int *lastItem);// essa função irá retornar um "Contato" ou mais caso encontre! (Mas aindo tô pensando qual a melhor forma de fazer).
 //END FUNCTIONS

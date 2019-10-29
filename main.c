@@ -15,6 +15,7 @@ FIELDS _contacts[10];
 
 int main()
 {
+    open(_contacts, &index);
     FIELDS _records[SIZE_SEARCH];
 
     int i, op, last_index;
