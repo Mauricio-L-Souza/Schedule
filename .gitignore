@@ -45,6 +45,7 @@
 *.cbp
 *.depend
 *.layout
+*.txtx
 
 
 # Kernel Module Compile Results

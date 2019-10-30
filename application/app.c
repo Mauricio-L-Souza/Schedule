@@ -99,14 +99,15 @@ void close(FIELDS _records[], int *index)
 void open(FIELDS _records[], int *index)
 {
     FILE *_file = fopen("_contacts.txtx", "ab+");
+    int lenght = 0;
 
-    if(_file != NULL){
+    if(_file == NULL){
         printf("Algo errado\n");
         exit(1);
     }
 
-    fseek(&_file, -siseof(FIELDS), SEEK_END);
-
+    fseek(_file, sizeof(FIELDS), SEEK_END);
+    lenght = ftell(_file);
 }
 
 void ascendingOrder(FIELDS _contacts[], int *last_position)
