@@ -93,7 +93,18 @@ void searchData(FIELDS _records[], int *index, FIELDS _searchedData[], int optio
 
 void close(FIELDS _records[], int *index)
 {
+    FILE *_file = fopen("_contacts.txtx", "ab+");
 
+    int i;
+
+    for (i = 0; i < *index; i++)
+    {
+        fwrite(_records, sizeof(FIELDS), 1, _file);
+        fseek(_file, sizeof(FIELDS), SEEK_END);
+    }
+
+    printf("Dados gravados com sucesso!\n");
+    getch();
 }
 
 void open(FIELDS _records[], int *index)
@@ -106,8 +117,19 @@ void open(FIELDS _records[], int *index)
         exit(1);
     }
 
-    fseek(_file, sizeof(FIELDS), SEEK_END);
+    fseek(_file, -sizeof(FIELDS), SEEK_END);
     lenght = ftell(_file);
+
+    *index = lenght/sizeof(FIELDS) + 1;
+    printf("%d\n", *index);
+    int i;
+
+    for (i = 0; i < *index; i++)
+    {
+        fread(_records + i, sizeof(FIELDS), 1, _file);
+        fseek(_file, -2*sizeof(FIELDS), SEEK_CUR);
+    }
+    fclose(_file);
 }
 
 void ascendingOrder(FIELDS _contacts[], int *last_position)

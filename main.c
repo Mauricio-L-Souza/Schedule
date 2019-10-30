@@ -23,7 +23,7 @@ int main()
     op = 0;
 
     //DATA FOR TESTS
-    strcpy(_contacts[0].name, "Mauricio");
+   /* strcpy(_contacts[0].name, "Mauricio");
     strcpy(_contacts[0].land_line, "32220000");
 
     strcpy(_contacts[0].phone_number, "32220000");
@@ -47,10 +47,12 @@ int main()
     _contacts[2].situation = 1;
     _contacts[2].index = 2;
 
-    index = 3;
+    index = 3;*/
+
+    //close(_contacts, &index);
     //END DATA FOR TESTS
 
-    while(op != 7){
+    /*while(op != 7){
         switch(main_menu()){
             case 1:
                 create(_contacts, &index);
@@ -75,10 +77,10 @@ int main()
                 op = 7;
                 break;
         }
-    }
+    }*/
 
 
-    /*for(i = 0; i < index; i++){
+    for(i = 0; i < index; i++){
         printf("\n==================================================\n");
         printf("\nNome: %s\n", _contacts[i].name);
         printf("Data de nascimento: %s/%s/%s\n", _contacts[i].birth_date.d, _contacts[i].birth_date.m, _contacts[i].birth_date.y);
@@ -91,7 +93,7 @@ int main()
             printf("Situação: Ativo\n");
         }
         printf("\n==================================================\n");
-    }*/
+    }
 
     return 0;
 }
