@@ -93,15 +93,14 @@ void searchData(FIELDS _records[], int *index, FIELDS _searchedData[], int optio
 
 void close(FIELDS _records[], int *index)
 {
-    FILE *_file = fopen("_contacts.txtx", "ab+");
+    FILE *_file = fopen("_contacts.txtx", "wb");
 
-    int i;
-
-    for (i = 0; i < *index; i++)
-    {
-        fwrite(_records, sizeof(FIELDS), 1, _file);
-        fseek(_file, sizeof(FIELDS), SEEK_END);
+    if(!_file) {
+        printf("o arquivo não existe!\n");
+        exit(1);
     }
+
+    fwrite(_records, sizeof(FIELDS),*index, _file);
 
     printf("Dados gravados com sucesso!\n");
     getch();
@@ -117,19 +116,20 @@ void open(FIELDS _records[], int *index)
         exit(1);
     }
 
-    fseek(_file, -sizeof(FIELDS), SEEK_END);
+    fseek(_file, 0, SEEK_END);
     lenght = ftell(_file);
 
-    *index = lenght/sizeof(FIELDS) + 1;
+    *index = lenght/sizeof(FIELDS);
     printf("%d\n", *index);
-    int i;
-
-    for (i = 0; i < *index; i++)
+    int n = 0;
+    fseek(_file, 0, SEEK_SET);
+    for (n=0; !feof(_file); ++n)
     {
-        fread(_records + i, sizeof(FIELDS), 1, _file);
-        fseek(_file, -2*sizeof(FIELDS), SEEK_CUR);
+        if (fread(&_records[n], sizeof(FIELDS), 1, _file) != 1) break;
     }
+
     fclose(_file);
+    getch();
 }
 
 void ascendingOrder(FIELDS _contacts[], int *last_position)
