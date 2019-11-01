@@ -96,13 +96,14 @@ void close(FIELDS _records[], int *index)
     FILE *_file = fopen("_contacts.txtx", "wb");
 
     if(!_file) {
-        printf("o arquivo não existe!\n");
+        printf("o arquivo não foi encontrado!\n");
         exit(1);
     }
 
     fwrite(_records, sizeof(FIELDS),*index, _file);
+    fclose(_file);
 
-    printf("Dados gravados com sucesso!\n");
+    printf("Dados gravados com sucesso!\nAperte qualquer tecla para continuar...");
     getch();
 }
 
@@ -120,7 +121,7 @@ void open(FIELDS _records[], int *index)
     lenght = ftell(_file);
 
     *index = lenght/sizeof(FIELDS);
-    printf("%d\n", *index);
+
     int n = 0;
     fseek(_file, 0, SEEK_SET);
     for (n=0; !feof(_file); ++n)
@@ -129,7 +130,6 @@ void open(FIELDS _records[], int *index)
     }
 
     fclose(_file);
-    getch();
 }
 
 void ascendingOrder(FIELDS _contacts[], int *last_position)
