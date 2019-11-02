@@ -1,11 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <ctype.h>
 
 #include "helpers.h"
-#include "configs.h"
-
 
 void create(FIELDS _contacts[], int *index){
     char name[21] = "", land_line[12] = "", phone_number[12] = "";
@@ -38,22 +35,21 @@ void _remove(FIELDS _contacts[], int *index)
 	FIELDS _records[SIZE_SEARCH];
 	int selected = 0, lastItem = 0;
 
-    searchData(_contacts, _records, 0, &lastItem);
+    searchData(_contacts, index, _records, 0, &lastItem);
 
-    if (lastItem > 0) {
-        listALL(_records, lastItem);
-
-        printf("Escolha um deles para prosseguir: ");
-        scanf("%d", &selected);
-
-
-        _records[selected].situation = 1;//
-        printf("\nSTEP 2\n");//
-        _contacts[_records[selected].index] = _records[selected];//
-    }else{
+    if (lastItem == 0) {
         printf("Nenhum registro encontrado\n");
         system("pause");
+        return;
     }
+
+    listALL(_records, lastItem);
+
+    printf("Escolha um deles para prosseguir: ");
+    scanf("%d", &selected);
+
+    _records[selected].situation = 1;//
+    _contacts[_records[selected].index] = _records[selected];//
 }
 
 void close(FIELDS _records[], int *index)
@@ -68,8 +64,7 @@ void close(FIELDS _records[], int *index)
     fwrite(_records, sizeof(FIELDS),*index, _file);
     fclose(_file);
 
-    printf("Dados gravados com sucesso!\nAperte qualquer tecla para continuar...");
-    getch();
+    wait("Dados gravados com sucesso!");
 }
 
 void open(FIELDS _records[], int *index)
@@ -105,21 +100,4 @@ void ascendingOrder(FIELDS _contacts[], int *last_position)
 void birthdayList(FIELDS _contacts[], int *index)
 {
 
-}
-
-void listALL(FIELDS _records[], int tam)
-{
-    system("cls || clear");
-    int i;
-    printf("\t\t\tLISTAGEM DE CONTATOS\n\n");
-    for (i = 0; i < tam; i++){
-        printf("================================\n");
-        printf("Contato %d                      |\n", i+1);
-        printf("================================\n");
-        printf("\tÍndice: %d\n", _records[i].index);
-        printf("\tNome: %s\n", _records[i].name);
-        printf("\n================================\n\n");
-    }
-
-    system("pause");
 }

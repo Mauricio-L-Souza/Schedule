@@ -4,7 +4,6 @@
 #include <string.h>
 
 #include "application/app.h"
-#include "application/helpers.h"
 #include "application/menus.h"
 
 
@@ -36,8 +35,14 @@ int main()
                 _remove(_contacts, &index);
                 break;
             case 4:
-                searchData(_contacts, _records, 0, &last_index);
+                searchData(_contacts, index, _records, 0, &last_index);
+                if(last_index == 0) {
+                    printf("O que você procura não foi encontrado!\nAperte qualquer tecla para continuar...");
+                    getch();
+                    break;
+                }
                 listALL(_records, last_index);
+
                 break;
             case 5:
 

@@ -1,5 +1,5 @@
 #include "helpers.h"
-#include "configs.h"
+#include "list.h"
 
 void deleteALL(FIELDS _records[], int *lenght)
 {
@@ -7,7 +7,7 @@ void deleteALL(FIELDS _records[], int *lenght)
 
     int lenght_arr_del = 0;
 
-    getSearchedData(_records, items_for_delete, lenght, 1, lenght_arr_del, "*");
+    getSearchedData(_records, lenght,items_for_delete, 1, lenght_arr_del, "*");
 
     if(lenght_arr_del == 0){
         printf("A lixeira está vazia!\nAperte qualquer tecla para continuar...");
@@ -29,9 +29,8 @@ void deleteOne(FIELDS _records[], int *lenght)
     FIELDS items_for_delete[SIZE_SEARCH];
 
     int lenght_arr_del = 0;
-    int arr_index[1];
 
-    searchData(_records, items_for_delete, 1, lenght_arr_del);
+    searchData(_records, lenght,items_for_delete, 1, lenght_arr_del);
 
     if (lenght_arr_del == 0) {
         printf("Nenhum registro encontrado\n");
@@ -39,9 +38,11 @@ void deleteOne(FIELDS _records[], int *lenght)
         return ;
     }
 
+    int arr_index[1];
+
     listALL(_records, lenght_arr_del);
 
-    printf("Escolha um deles para prosseguir: ");
+    printf("Escolha um index para prosseguir: ");
     scanf("%d", &arr_index[0]);
 
     map_indexes(items_for_delete, lenght_arr_del, 0, arr_index);

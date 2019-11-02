@@ -13,6 +13,15 @@ char getStringValue(char *text, char value_to_return[])
     fflush(stdin);
 }
 
+void wait(char *text){
+    if(text){
+        printf("%s\nAperte qualquer tecla para continuar...", text);
+    }else{
+        printf("Aperte qualquer tecla para continuar...");
+    }
+    getch();
+}
+
 DATE inputDate(){
 
     DATE _date;
@@ -80,16 +89,16 @@ void reorder_contact_array(FIELDS _records[], int *index, int arr_index[], FIELD
     }
 }
 
-void map_indexes(FIELDS _records[], int *lenght, int n, int arr_index[])
+void map_indexes(FIELDS _records[], int lenght, int n, int arr_index[])
 {
-    if(n >= *lenght) return;
+    if(n >= lenght) return;
     arr_index[n] = _records[n].index;
     n++;
     map_indexes(_records, lenght, n, arr_index);
 }
 
 
-void searchData(FIELDS _records[], FIELDS _searchedData[], int option, int *lastItem)
+void searchData(FIELDS _records[], int lenght, FIELDS _searchedData[], int option, int *lastItem)
 {
     char str4search [21] = "";
 
@@ -98,17 +107,15 @@ void searchData(FIELDS _records[], FIELDS _searchedData[], int option, int *last
 
     str_to_upper(str4search, str4search);
 
-    getSearchedData(_records, _searchedData, option, lastItem, str4search);
+    getSearchedData(_records, lenght, _searchedData, option, lastItem, str4search);
 }
 
 
-void getSearchedData(FIELDS _records[], FIELDS _searchedData[], int option, int *lastItem, char str4search[])
+void getSearchedData(FIELDS _records[], int lenght, FIELDS _searchedData[], int option, int *lastItem, char str4search[])
 {
-    int count = 0, i, lenght;
+    int count = 0, i;
 
-    lenght = sizeof(_records)/sizeof(FIELDS);
-
-    for(i = 0; i <= lenght; i++){
+    for(i = 0; i < lenght; i++){
         if(str4search[0] != '*'){
             if(strcmpi(_records[i].name, str4search) == 0)
             {
