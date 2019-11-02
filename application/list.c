@@ -2,7 +2,7 @@
 
 void listALL(FIELDS _records[], int tam)
 {
-    //system("cls || clear");
+    system("cls || clear");
     int i;
     printf("\t\t\tLISTAGEM DE CONTATOS\n\n");
 
@@ -15,5 +15,15 @@ void listALL(FIELDS _records[], int tam)
         printf("\n================================\n\n");
     }
 
-    system("pause");
+    wait("");
+}
+
+void listOne(FIELDS _record, int i)
+{
+    printf("\n================================\n");
+    printf("Contato %d                      |\n", i+1);
+    printf("================================\n");
+    printf("\tÍndice: %d\n", _record.index);
+    printf("\tNome: %s\n", _record.name);
+    printf("\n================================\n\n");
 }

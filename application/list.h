@@ -4,5 +4,6 @@
 #include "configs.h"
 
 void listALL(FIELDS _records[], int tam);
+void listOne(FIELDS _record, int i);
 
 #endif // LIST_H_INCLUDED

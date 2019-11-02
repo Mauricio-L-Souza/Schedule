@@ -35,7 +35,7 @@ void _remove(FIELDS _contacts[], int *index)
 	FIELDS _records[SIZE_SEARCH];
 	int selected = 0, lastItem = 0;
 
-    searchData(_contacts, index, _records, 0, &lastItem);
+    searchData(_contacts, *index, _records, 0, &lastItem);
 
     if (lastItem == 0) {
         printf("Nenhum registro encontrado\n");
@@ -45,13 +45,38 @@ void _remove(FIELDS _contacts[], int *index)
 
     listALL(_records, lastItem);
 
-    printf("Escolha um deles para prosseguir: ");
-    scanf("%d", &selected);
+    getIntValue("\nEscolha um deles para prosseguir: ", &selected);
 
     _records[selected].situation = 1;//
     _contacts[_records[selected].index] = _records[selected];//
 }
 
+void _search(FIELDS _records[], int index)
+{
+    FIELDS _searched[SIZE_SEARCH];
+    int last_index;
+
+    searchData(_records, index, _searched, 0, &last_index);
+
+    if(last_index == 0) {
+        wait("O que você procura não foi encontrado!");
+        return;
+    }
+
+    listALL(_records, last_index);
+}
+
+void ascendingOrder(FIELDS _contacts[], int length)
+{
+
+}
+
+void birthdayList(FIELDS _contacts[], int index)
+{
+
+}
+
+//ARQUIVOS
 void close(FIELDS _records[], int *index)
 {
     FILE *_file = fopen("_contacts.txtx", "wb");
@@ -84,20 +109,12 @@ void open(FIELDS _records[], int *index)
 
     int n = 0;
     fseek(_file, 0, SEEK_SET);
-    for (n=0; !feof(_file); ++n)
+
+    while(!feof(_file))
     {
         if (fread(&_records[n], sizeof(FIELDS), 1, _file) != 1) break;
+        n++;
     }
 
     fclose(_file);
-}
-
-void ascendingOrder(FIELDS _contacts[], int *last_position)
-{
-
-}
-
-void birthdayList(FIELDS _contacts[], int *index)
-{
-
 }

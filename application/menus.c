@@ -1,7 +1,8 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-#include "menus.h"
+#include "list.h"
+#include "trash.h"
 
 int main_menu(){
     int op = 0;
@@ -24,9 +25,7 @@ int main_menu(){
 
         if(op>=1 && op <= 7) break;
         else{
-            printf("A operação escolhida não existe!\n");
-
-            system("pause");
+            wait("A operação escolhida não existe!");
             fflush(stdin);
             continue;
         }
@@ -36,7 +35,7 @@ int main_menu(){
     return op;
 }
 
-int list_menu ()
+void list_menu (FIELDS _records[], int length)
 {
     int op;
     do{
@@ -56,21 +55,20 @@ int list_menu ()
 
         scanf("%d", &op);
 
-        if(op>=1 && op <= 4) break;
-        else{
-            printf("A operação escolhida não existe!\n");
-
-            system("pause");
-            fflush(stdin);
-            continue;
+        switch(op){
+            case 1:
+                wait("");
+                break;
+            default:
+                wait("\nA operação escolhida não existe!");
+                fflush(stdin);
+                break;
         }
 
-    }while(1);
-
-    return op;
+    }while(op != 5);
 }
 
-int trash_menu()
+void trash_menu(FIELDS _records[], int *length)
 {
     int op;
     do{
@@ -81,9 +79,10 @@ int trash_menu()
         printf("\n LIXEIRA \n");
         printf("\n1 - Listar items da lixeira.\n");
         printf("2 - Restaurar um item da lixeira\n");
-        printf("3 - Restaurar todos os items da lixeira");
-        printf("4 - Esvaziar lixeira");
-        printf("5 - Voltar ao menu principal\n");
+        printf("3 - Restaurar todos os itens da lixeira\n");
+        printf("4 - Deletar um item da lixeira\n");
+        printf("5 - Esvaziar lixeira\n");
+        printf("6 - Voltar ao menu principal\n");
         printf("\n==================================================================\n");
 
         printf("\nDigite a opção desejada:\n");
@@ -91,16 +90,18 @@ int trash_menu()
 
         scanf("%d", &op);
 
-        if(op>=1 && op <= 5) break;
-        else{
-            printf("\nA operação escolhida não existe!\n");
-
-            system("pause");
-            fflush(stdin);
-            continue;
+        switch(op){
+            case 1:
+                listContactsInTrash(_records, *length);
+                break;
+            case 5:
+                deleteALL(_records, length);
+            case 6:
+                break;
+            default:
+                wait("\nA operação escolhida não existe!");
+                fflush(stdin);
+                break;
         }
-
-    }while(1);
-
-    return op;
+    }while(op!=6);
 }

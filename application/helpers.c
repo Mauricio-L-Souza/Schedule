@@ -5,10 +5,18 @@
 #include "helpers.h"
 #include "configs.h"
 
-char getStringValue(char *text, char value_to_return[])
+void getStringValue(char *text, char value_to_return[])
 {
     printf("%s", text);
     scanf("%s", value_to_return);
+
+    fflush(stdin);
+}
+
+void getIntValue(char *text, int *value_to_return)
+{
+    printf("%s", text);
+    scanf("%d", value_to_return);
 
     fflush(stdin);
 }
@@ -77,23 +85,28 @@ void reorder_contact_array(FIELDS _records[], int *index, int arr_index[], FIELD
     FIELDS aux[SIZE_ARR_CONTACTS];
 
     for(i = 0; i < *index; i++){
-        for(j = 0; j <= lenght_index; j++){
+
+        for(j = 0; j < lenght_index; j++){
+
             if(i == arr_index[j]) continue;
+
             aux[items_count] = _records[i];
             items_count++;
         }
     }
 
-    for(i = 0; i < items_count + 1; i++){
+    for(i = 0; i < items_count; i++){
         reordered_arr[i] = aux[i];
     }
+
+    *index = i;
 }
 
-void map_indexes(FIELDS _records[], int lenght, int n, int arr_index[])
+void map_indexes(FIELDS _records[], int lenght, int *n, int arr_index[])
 {
-    if(n >= lenght) return;
-    arr_index[n] = _records[n].index;
-    n++;
+    if(*n >= lenght || *n >= 10) return;
+    arr_index[*n] = _records[*n].index;
+    *n++;
     map_indexes(_records, lenght, n, arr_index);
 }
 
@@ -102,8 +115,7 @@ void searchData(FIELDS _records[], int lenght, FIELDS _searchedData[], int optio
 {
     char str4search [21] = "";
 
-    printf("Digite o nome que deseja procurar: ");
-    scanf("%s", &str4search);
+    getStringValue("Digite o nome que deseja procurar: ", str4search);
 
     str_to_upper(str4search, str4search);
 
@@ -129,9 +141,12 @@ void getSearchedData(FIELDS _records[], int lenght, FIELDS _searchedData[], int 
                 _searchedData[count] = _records[i];
                 count++;
             }
-        }else if(count < 10){
-            _searchedData[count] = _records[i];
-            count++;
+        }else{
+            if(count < 10){
+                if(_records[i].situation != option) continue;
+                _searchedData[count] = _records[i];
+                count++;
+            }
         }
     }
 

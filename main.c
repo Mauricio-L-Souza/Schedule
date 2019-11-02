@@ -9,19 +9,15 @@
 
 //GLOBALS
 int index = 0;
-FIELDS _contacts[SIZE_ARR_CONTACTS];
+FIELDS _contacts[SIZE_ARR_CONTACTS] = {};
 //END GLOBALS
 
 int main()
 {
     open(_contacts, &index);
-    FIELDS _records[SIZE_SEARCH];
 
-    int op, last_index;
+    int op = 0;
     setlocale(LC_ALL, "Portuguese");
-
-    op = 0;
-
 
     while(op != 7){
         switch(main_menu()){
@@ -35,20 +31,13 @@ int main()
                 _remove(_contacts, &index);
                 break;
             case 4:
-                searchData(_contacts, index, _records, 0, &last_index);
-                if(last_index == 0) {
-                    printf("O que você procura não foi encontrado!\nAperte qualquer tecla para continuar...");
-                    getch();
-                    break;
-                }
-                listALL(_records, last_index);
-
+                _search(_contacts, index);
                 break;
             case 5:
 
                 break;
             case 6:
-
+                trash_menu(_contacts, &index);
                 break;
             case 7:
                 op = 7;
@@ -59,5 +48,3 @@ int main()
 
     return 0;
 }
-
-

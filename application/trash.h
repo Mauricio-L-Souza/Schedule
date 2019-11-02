@@ -11,4 +11,6 @@ void restoreAll(FIELDS _records[], int *lenght);
 
 void restoreOne(FIELDS _records[], int *lenght);
 
+void listContactsInTrash(FIELDS _records[], int length);
+
 #endif // TRASH_H_INCLUDED

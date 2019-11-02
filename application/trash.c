@@ -1,64 +1,81 @@
+#include <stdlib.h>
 #include "helpers.h"
 #include "list.h"
 
-void deleteALL(FIELDS _records[], int *lenght)
+void deleteALL(FIELDS _records[], int *length)
 {
     FIELDS items_for_delete[SIZE_ARR_CONTACTS];
 
-    int lenght_arr_del = 0;
+    int length_arr_del = 0;
 
-    getSearchedData(_records, lenght,items_for_delete, 1, lenght_arr_del, "*");
+    getSearchedData(_records, *length,items_for_delete, 1, &length_arr_del, "*");
 
-    if(lenght_arr_del == 0){
-        printf("A lixeira está vazia!\nAperte qualquer tecla para continuar...");
-        getch();
+    if(length_arr_del == 0){
+        wait("A lixeira está vazia!");
         return ;
     }
+    listALL(items_for_delete, length_arr_del);
+    wait("\nDados da lixeira no array");
 
-    int arr_index[SIZE_ARR_CONTACTS];
-    map_indexes(items_for_delete, lenght_arr_del, 0, arr_index);
+    int arr_index[SIZE_ARR_CONTACTS], n = 0;
 
-    reorder_contact_array(_records, lenght, arr_index, _records);
+    map_indexes(items_for_delete, length_arr_del, &n, arr_index);
 
-    printf("A lixeira foi esvaziada!\nAperte qualquer tecla para continuar...");
-    getch();
+    wait("\nitems mapeados");
+
+    reorder_contact_array(_records, length, arr_index, _records);
+
+    wait("A lixeira foi esvaziada!");
 }
 
-void deleteOne(FIELDS _records[], int *lenght)
+void deleteOne(FIELDS _records[], int *length)
 {
     FIELDS items_for_delete[SIZE_SEARCH];
 
-    int lenght_arr_del = 0;
+    int length_arr_del = 0;
 
-    searchData(_records, lenght,items_for_delete, 1, lenght_arr_del);
+    searchData(_records, length,items_for_delete, 1, length_arr_del);
 
-    if (lenght_arr_del == 0) {
-        printf("Nenhum registro encontrado\n");
-        system("pause");
+    if (length_arr_del == 0) {
+        wait("Nenhum registro encontrado\n");
         return ;
     }
 
-    int arr_index[1];
+    int arr_index[1], n = 0;
 
-    listALL(_records, lenght_arr_del);
+    listALL(_records, length_arr_del);
 
-    printf("Escolha um index para prosseguir: ");
-    scanf("%d", &arr_index[0]);
+    getIntValue("Escolha um index para prosseguir: ", &arr_index[0]);
 
-    map_indexes(items_for_delete, lenght_arr_del, 0, arr_index);
+    map_indexes(items_for_delete, length_arr_del, &n, arr_index);
 
-    reorder_contact_array(_records, lenght, arr_index, _records);
+    reorder_contact_array(_records, length, arr_index, _records);
 
-    printf("A lixeira foi esvaziada!\nAperte qualquer tecla para continuar...");
-    getch();
+    wait("O item foi deletado com sucesso!");
 }
 
-void restoreAll()
+void restoreAll(FIELDS _records[], int *length)
 {
 
 }
 
-void restoreOne()
+void restoreOne(FIELDS _records[], int *length)
 {
 
+}
+
+void listContactsInTrash(FIELDS _records[], int length)
+{
+    int i, _empty = 1;
+    for(i = 0; i < length; i++){
+        if(_records[i].situation == 1){
+            listOne(_records[i], i);
+            _empty = 0;
+        }
+    }
+    if(_empty){
+        wait("\nA lixeira está vazia!");
+        return;
+    }
+    wait(NULL);
 }
