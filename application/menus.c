@@ -69,3 +69,38 @@ int list_menu ()
 
     return op;
 }
+
+int trash_menu()
+{
+    int op;
+    do{
+        op = 0;
+        system("cls || clear");
+
+        printf("==================================================================\n");
+        printf("\n LIXEIRA \n");
+        printf("\n1 - Listar items da lixeira.\n");
+        printf("2 - Restaurar um item da lixeira\n");
+        printf("3 - Restaurar todos os items da lixeira");
+        printf("4 - Esvaziar lixeira");
+        printf("5 - Voltar ao menu principal\n");
+        printf("\n==================================================================\n");
+
+        printf("\nDigite a opção desejada:\n");
+        printf(">> ");
+
+        scanf("%d", &op);
+
+        if(op>=1 && op <= 5) break;
+        else{
+            printf("\nA operação escolhida não existe!\n");
+
+            system("pause");
+            fflush(stdin);
+            continue;
+        }
+
+    }while(1);
+
+    return op;
+}

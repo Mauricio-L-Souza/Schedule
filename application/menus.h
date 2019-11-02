@@ -4,6 +4,6 @@
 int main_menu();
 int list_menu();
 int trash_menu();
-
+int trash_menu();
 
 #endif // MENUS_H_INCLUDED
