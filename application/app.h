@@ -1,32 +1,18 @@
 #ifndef APP_H_INCLUDED
 #define APP_H_INCLUDED
 
-# define SIZE_SEARCH 10
-
-typedef struct{
-    char d[3], m[3], y[5];
-}DATE;// um registro separado para a data!
-
-typedef struct{
-    char name[30];
-    char land_line[11], phone_number[12];
-    char situation;
-    int index;
-    DATE birth_date;
-}FIELDS;//Essa aqui é um registro, eu coloquei com o typedef Pra criar um tipo novo e eu poder usar lá em baixo!
-
+#include "configs.h"
 
 //FUNCTIONS
-void birthdayList(FIELDS _fields[], int *index);// litagem por aniversário
-void ascendingOrder(FIELDS _fields[], int *last_position);//ordem alfabética
-void create(FIELDS _fields[], int *index);//inserção de dados de cada "Contato";
+void birthdayList(FIELDS _fields[], int *index);
+void ascendingOrder(FIELDS _fields[], int *last_position);
+void create(FIELDS _fields[], int *index);
 void update(FIELDS _fields[], int *index);
 void _remove(FIELDS _fields[], int *index);
 
 void close(FIELDS _records[], int *index);
 void open(FIELDS _records[], int *index);
 
-void searchData(FIELDS _records[], int *index, FIELDS _searchedData[], int option, int *lastItem);// essa função irá retornar um "Contato" ou mais caso encontre! (Mas aindo tô pensando qual a melhor forma de fazer).
 //END FUNCTIONS
 
 #endif // APP_H_INCLUDED

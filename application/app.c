@@ -3,8 +3,8 @@
 #include <string.h>
 #include <ctype.h>
 
-#include "app.h"
 #include "helpers.h"
+#include "configs.h"
 
 
 void create(FIELDS _contacts[], int *index){
@@ -38,7 +38,7 @@ void _remove(FIELDS _contacts[], int *index)
 	FIELDS _records[SIZE_SEARCH];
 	int selected = 0, lastItem = 0;
 
-    searchData(_contacts, index, _records, 0, &lastItem);
+    searchData(_contacts, _records, 0, &lastItem);
 
     if (lastItem > 0) {
         listALL(_records, lastItem);
@@ -54,41 +54,6 @@ void _remove(FIELDS _contacts[], int *index)
         printf("Nenhum registro encontrado\n");
         system("pause");
     }
-}
-
-
-
-void searchData(FIELDS _records[], int *index, FIELDS _searchedData[], int option, int *lastItem)
-{
-    char str4search [21] = "";
-
-    printf("Digite o nome que deseja procurar: ");
-    scanf("%s", &str4search);
-
-    str_to_upper(str4search, str4search);
-
-    int count = 0, i;
-    for(i = 0; i < *index; i++){
-        if(str4search[0] != '*'){
-            if(strcmpi(_records[i].name, str4search) == 0)
-            {
-                _searchedData[count] = _records[i];
-                count++;
-                break;
-            }else if(strcasecmp(_records[i].name, str4search) &&
-                    (_records[i].name[0] == str4search[0]) &&
-                    (count < 10) && (_records[i].situation == option))
-            {
-                _searchedData[count] = _records[i];
-                count++;
-            }
-        }else if(count < 10){
-            _searchedData[count] = _records[i];
-            count++;
-        }
-    }
-
-    *lastItem = count;
 }
 
 void close(FIELDS _records[], int *index)

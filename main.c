@@ -10,7 +10,7 @@
 
 //GLOBALS
 int index = 0;
-FIELDS _contacts[10];
+FIELDS _contacts[SIZE_ARR_CONTACTS];
 //END GLOBALS
 
 int main()
@@ -36,7 +36,7 @@ int main()
                 _remove(_contacts, &index);
                 break;
             case 4:
-                searchData(_contacts, &index, _records, 0, &last_index);
+                searchData(_contacts, _records, 0, &last_index);
                 listALL(_records, last_index);
                 break;
             case 5:

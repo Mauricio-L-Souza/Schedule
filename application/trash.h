@@ -1,12 +1,14 @@
 #ifndef TRASH_H_INCLUDED
 #define TRASH_H_INCLUDED
 
-void deleteALL();
+#include "helpers.h"
 
-void deleteOne();
+void deleteALL(FIELDS _records[], int *lenght);
 
-void restoreAll();
+void deleteOne(FIELDS _records[], int *lenght);
 
-void restoreOne();
+void restoreAll(FIELDS _records[], int *lenght);
+
+void restoreOne(FIELDS _records[], int *lenght);
 
 #endif // TRASH_H_INCLUDED
