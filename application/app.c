@@ -47,7 +47,7 @@ void _remove(FIELDS _contacts[], int *index)
 
     getIntValue("\nEscolha um deles para prosseguir: ", &selected);
 
-    _records[selected].situation = 1;//
+    _records[selected].situation = 1;
     _contacts[_records[selected].index] = _records[selected];//
 }
 
@@ -63,7 +63,7 @@ void _search(FIELDS _records[], int index)
         return;
     }
 
-    listALL(_records, last_index);
+    listALL(_searched, last_index);
 }
 
 void ascendingOrder(FIELDS _contacts[], int length)

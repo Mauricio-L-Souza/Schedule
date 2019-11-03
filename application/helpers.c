@@ -141,12 +141,10 @@ void getSearchedData(FIELDS _records[], int lenght, FIELDS _searchedData[], int 
                 _searchedData[count] = _records[i];
                 count++;
             }
-        }else{
-            if(count < 10){
+        }else if(count < 10){
                 if(_records[i].situation != option) continue;
                 _searchedData[count] = _records[i];
                 count++;
-            }
         }
     }
 

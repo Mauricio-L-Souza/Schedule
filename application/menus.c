@@ -18,10 +18,7 @@ int main_menu(){
         printf("7 - Sair\n");
         printf("\n==================================================================\n");
 
-        printf("\ndigite a opção desejada:\n");
-        printf(">> ");
-
-        scanf("%d", &op);
+        getIntValue("\nDigite a opção desejada:\n>> ", &op);
 
         if(op>=1 && op <= 7) break;
         else{
@@ -50,10 +47,7 @@ void list_menu (FIELDS _records[], int length)
         printf("4 - Voltar ao menu principal\n");
         printf("\n==================================================================\n");
 
-        printf("\nDigite a opção desejada:\n");
-        printf(">> ");
-
-        scanf("%d", &op);
+        getIntValue("\nDigite a opção desejada:\n>> ", &op);
 
         switch(op){
             case 1:
@@ -65,6 +59,9 @@ void list_menu (FIELDS _records[], int length)
                 break;
         }
 
+        if(op!=5){
+            continue;
+        }
     }while(op != 5);
 }
 
@@ -85,17 +82,26 @@ void trash_menu(FIELDS _records[], int *length)
         printf("6 - Voltar ao menu principal\n");
         printf("\n==================================================================\n");
 
-        printf("\nDigite a opção desejada:\n");
-        printf(">> ");
-
-        scanf("%d", &op);
+        getIntValue("\nDigite a opção desejada:\n>> ", &op);
+        fflush(stdin);
 
         switch(op){
             case 1:
                 listContactsInTrash(_records, *length);
                 break;
+            case 2:
+                restoreOne(_records, *length);
+                break;
+            case 3:
+                restoreAll(_records, *length);
+                break;
+            case 4:
+                printf("%d\n", op);
+                deleteOne(_records, length);
+                break;
             case 5:
                 deleteALL(_records, length);
+                break;
             case 6:
                 break;
             default:
@@ -103,5 +109,8 @@ void trash_menu(FIELDS _records[], int *length)
                 fflush(stdin);
                 break;
         }
+
+        if(op >= 1 && op < 6) continue;
+
     }while(op!=6);
 }

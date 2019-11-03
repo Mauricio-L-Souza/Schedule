@@ -23,24 +23,30 @@ int main()
         switch(main_menu()){
             case 1:
                 create(_contacts, &index);
+                fflush(stdin);
                 break;
             case 2:
                 update(_contacts, &index);
+                fflush(stdin);
                 break;
             case 3:
                 _remove(_contacts, &index);
+                fflush(stdin);
                 break;
             case 4:
                 _search(_contacts, index);
+                fflush(stdin);
                 break;
             case 5:
-
+                fflush(stdin);
                 break;
             case 6:
                 trash_menu(_contacts, &index);
+                fflush(stdin);
                 break;
             case 7:
                 op = 7;
+                fflush(stdin);
                 break;
         }
     }
