@@ -60,3 +60,26 @@ void showTypedValues(FIELDS _record, char *text)
     getBeautifulNumberPhone(2, _record.phone_number, phoneNumber);
     printf("Celular: %s\n", phoneNumber);
 }
+
+void reorderByIndex(FIELDS _records[], int length)
+{
+    FIELDS _aux;
+
+    int i = 0, j = i + 1, aux_pos;
+
+    while(i < length){
+        aux_pos = i;
+        for (j = i + 1; j < length; j++){
+            if(_records[aux_pos].index > _records[j].index){
+                _aux = _records[aux_pos];
+                _records[aux_pos] = _records[j];
+                _records[j] = _aux;
+            }
+            aux_pos++;
+        }
+        i++;
+    }
+
+    for(i = 0; i < length; i++) listOne(_records[i], i, 1);
+    wait("");
+}
