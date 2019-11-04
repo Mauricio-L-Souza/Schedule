@@ -1,13 +1,13 @@
 void listar nome(_contacts) {
 	int i, j, k, l;
-	FIELDS aux[1];
+	FIELDS aux;
 	for (i = 0; index - 1; i++) {
 		for (j = 0; i + 1; j++) {
 			l = strcpm(_contacts[i].name, _contacts[j].name);
 			if (l >= 0) {
-				aux[0] = _contacts[i];
+				aux = _contacts[i];
 				_contacts[i] = _contacts[j];
-				_contacts[j] = aux[0];
+				_contacts[j] = aux;
 			}
 		}
 	}
