@@ -161,53 +161,44 @@ void _search(FIELDS _records[], int index)
 
 void ascendingOrder(FIELDS _contacts[], int index)
 {
-    int i, j, k, l;
-	FIELDS aux[1];
-	for (i = 0; i < index - 1; i++) {
-		for (j = index-1; j >0; j--) {
-			l = strcmpi(_contacts[i].name, _contacts[j].name);
-			if (l >= 0) {
-				aux[0] = _contacts[i];
+    int i, j, aux_pos;
+	FIELDS aux;
+	for (i = 0; i < index; i++) {
+        aux_pos = i;
+		for (j = i + 1; j < index; j++) {
+			if (strcmpi(_contacts[i].name, _contacts[j].name) >= 0) {
+				aux = _contacts[i];
 				_contacts[i] = _contacts[j];
-				_contacts[j] = aux[0];
+				_contacts[j] = aux;
 			}
+			aux_pos++;
 		}
 	}
 
-	for(i = 0; i< index; i++){
-        listOne(_contacts[i], i, 0);
-	}
+	for(i = 0; i< index; i++) listOne(_contacts[i], i, 0);
 	wait("");
 }
 
 void birthdayList(FIELDS _contacts[], int index)
 {
-    int i, j, k,l, m;
+    int i = 0, j, aux_pos;
+
 	FIELDS aux;
-	for (i = 0; i < index -1; i++) {
-		for (j = 1; j < index; j++) {
-			l= atoi(_contacts[i].birth_date.m);
-			m= atoi(_contacts[j].birth_date.m);
-			if (l > m) {
-				aux = _contacts[i];
-				_contacts[i] = _contacts[j];
+
+	while (i < index) {
+	    aux_pos = i;
+		for (j = i + 1; j < index; j++) {
+			if (atoi(_contacts[aux_pos].birth_date.m) > atoi(_contacts[j].birth_date.m)) {
+				aux = _contacts[aux_pos];
+				_contacts[aux_pos] = _contacts[j];
 				_contacts[j] = aux;
 			}
-
-			if (l == m) {
-
-				if (l > m) {
-					aux = _contacts[i];
-					_contacts[i] = _contacts[j];
-					_contacts[j] = aux;
-				}
-			}
+			aux_pos++;
 		}
+		i++;
 	}
 
-    for(i = 0; i< index; i++){
-        printf("aniversário: %s/%s/%s\n", _contacts[i].birth_date.d, _contacts[i].birth_date.m, _contacts[i].birth_date.y);
-	}
+    for(i = 0; i < index; i++) listOne(_contacts[i], i, 0);
 	wait("");
 }
 
