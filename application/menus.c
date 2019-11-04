@@ -3,6 +3,7 @@
 
 #include "list.h"
 #include "trash.h"
+#include "app.h"
 
 int main_menu(){
     int op = 0;
@@ -43,15 +44,25 @@ void list_menu (FIELDS _records[], int length)
         printf("\n LISTAGEM \n");
         printf("\n1 - Listar por ordem alfabetica.\n");
         printf("2 - Listar por aniversariante do mês\n");
-        printf("3 - Listar todos");
-        printf("4 - Voltar ao menu principal\n");
+        printf("3 - Listar todos\n");
+        printf("4 - Ordenar e listar por índice\n");
+        printf("5 - Voltar ao menu principal\n");
         printf("\n==================================================================\n");
 
         getIntValue("\nDigite a opção desejada:\n>> ", &op);
 
         switch(op){
             case 1:
-                wait("");
+                ascendingOrder(_records, length);
+                break;
+            case 2:
+                birthdayList(_records, length);
+                break;
+            case 3:
+                listALL(_records, length, 0);
+                break;
+            case 4:
+                reorderByIndex(_records, length);
                 break;
             default:
                 wait("\nA operação escolhida não existe!");
