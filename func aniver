@@ -20,4 +20,4 @@ void listar aniver(_contacts){
                 if(atoi(_contacts[i].birth_date.d)>atoi(_contacts[j].birth_date.d))   
                     aux[0]=_contacts[i];
                     _contacts[i]=_contacts[j];
-                    _contacts[j]=
+                    _contacts[j]=aux[0];}}}}
