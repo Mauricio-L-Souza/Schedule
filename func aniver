@@ -1,0 +1,23 @@
+void listar aniver(_contacts){
+    int i, j, k ;
+    FIELDS aux[1];
+    for (i=0;index-1;i++){
+         for(j=0;i+1;j++){
+        if (atoi(_contacts[i].birth_date.a)>atoi(_contacts[j].birth_date.a)){
+                aux[0]=_contacts[i];
+                _contacts[i]=_contacts[j];
+                _contacts[j]=aux[0];}
+        
+        if (atoi(_contacts[i].birth_date.a)=atoi(_contacts[j].birth_date.a)){
+                
+                if(atoi(_contacts[i].birth_date.m)>atoi(_contacts[j].birth_date.m)){
+                    aux[0]=_contacts[i];
+                    _contacts[i]=_contacts[j];
+                    _contacts[j]=aux[0];}
+            
+            if(atoi(_contacts[i].birth_date.m)==atoi(_contacts[j].birth_date.m)){
+                
+                if(atoi(_contacts[i].birth_date.d)>atoi(_contacts[j].birth_date.d))   
+                    aux[0]=_contacts[i];
+                    _contacts[i]=_contacts[j];
+                    _contacts[j]=
