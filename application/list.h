@@ -3,7 +3,7 @@
 
 #include "configs.h"
 
-void listALL(FIELDS _records[], int tam);
-void listOne(FIELDS _record, int i);
+void listALL(FIELDS _records[], int tam, int op);
+void listOne(FIELDS _record, int i, int op);
 
 #endif // LIST_H_INCLUDED

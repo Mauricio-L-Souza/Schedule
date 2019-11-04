@@ -14,7 +14,7 @@ void deleteALL(FIELDS _records[], int *length)
         wait("A lixeira está vazia!");
         return ;
     }
-    listALL(items_for_delete, length_arr_del);
+    listALL(items_for_delete, length_arr_del, 0);
 
     int arr_index[SIZE_ARR_CONTACTS], n = 0;
 
@@ -40,7 +40,7 @@ void deleteOne(FIELDS _records[], int *length)
 
     int arr_index[1], n = 0;
 
-    listALL(items_for_delete, length_arr_del);
+    listALL(items_for_delete, length_arr_del, 0);
 
     getIntValue("Escolha um index para prosseguir: ", &arr_index[0]);
 
@@ -76,7 +76,7 @@ void restoreOne(FIELDS _records[], int length)
         return ;
     }
 
-    listALL(items_for_restore, length_arr_res);
+    listALL(items_for_restore, length_arr_res, 1);
 
     int i;
 
@@ -89,11 +89,12 @@ void restoreOne(FIELDS _records[], int length)
 
 void listContactsInTrash(FIELDS _records[], int length)
 {
-    int i, _empty = 1;
+    int i, _empty = 1, cur_pos = 0;
     for(i = 0; i < length; i++){
         if(_records[i].situation == 1){
-            listOne(_records[i], i);
+            listOne(_records[i], cur_pos, 0);
             _empty = 0;
+            cur_pos++;
         }
     }
     if(_empty){
