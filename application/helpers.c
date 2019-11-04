@@ -7,6 +7,7 @@
 
 void getStringValue(char *text, char value_to_return[])
 {
+    fflush(stdin);
     printf("%s", text);
     scanf("%s", value_to_return);
 
@@ -15,6 +16,7 @@ void getStringValue(char *text, char value_to_return[])
 
 void getIntValue(char *text, int *value_to_return)
 {
+    fflush(stdin);
     printf("%s", text);
     scanf("%d", value_to_return);
 
@@ -23,9 +25,9 @@ void getIntValue(char *text, int *value_to_return)
 
 void wait(char *text){
     if(text){
-        printf("%s\nAperte qualquer tecla para continuar...", text);
+        printf("%s\nAperte qualquer tecla para continuar...\n", text);
     }else{
-        printf("Aperte qualquer tecla para continuar...");
+        printf("Aperte qualquer tecla para continuar...\n");
     }
     getch();
 }
@@ -127,14 +129,21 @@ void getSearchedData(FIELDS _records[], int lenght, FIELDS _searchedData[], int 
 {
     int count = 0, i;
 
+    for(i = 0; i < lenght; i++)
+        if(strcmpi(_records[i].name, str4search) == 0)
+        {
+            _searchedData[count] = _records[i];
+            count++;
+            break;
+        }
+    if(count > 0){
+        *lastItem = count;
+        return ;
+    }
+
     for(i = 0; i < lenght; i++){
         if(str4search[0] != '*'){
-            if(strcmpi(_records[i].name, str4search) == 0)
-            {
-                _searchedData[count] = _records[i];
-                count++;
-                break;
-            }else if(strcasecmp(_records[i].name, str4search) &&
+            if(strcasecmp(_records[i].name, str4search) &&
                     (_records[i].name[0] == str4search[0]) &&
                     (count < 10) && (_records[i].situation == option))
             {
@@ -149,4 +158,49 @@ void getSearchedData(FIELDS _records[], int lenght, FIELDS _searchedData[], int 
     }
 
     *lastItem = count;
+}
+
+int validatePhoneNumber(int type, char number[])
+{
+    if(type == 1 && strlen(number) == 10 &&  strtoull(number, NULL, 10) > 0) return 1;
+    else if(type == 2 && strlen(number) == 11 &&  strtoull(number, NULL, 10) > 0) return 1;
+
+    return 0;
+}
+
+void getBeautifulNumberPhone(int type, char number[], char beautified_number[])
+{
+    int i = 1, cur_pos = 0;
+    if(type == 1){
+        beautified_number[0] = '(';
+        beautified_number[3] = ')';
+        beautified_number[4] = ' ';
+        beautified_number[9] = '-';
+
+        while(i < 14){
+            if((i > 0 && i < 3) || (i > 4 && i < 9) || (i > 9))
+            {
+                beautified_number[i] = number[cur_pos];
+                cur_pos ++;
+            }
+            i++;
+        }
+    }else{
+        if(type == 2){
+            beautified_number[0] = '(';
+            beautified_number[3] = ')';
+            beautified_number[4] = ' ';
+            beautified_number[6] = ' ';
+            beautified_number[11] = '-';
+
+            while(i < 16){
+                if((i > 0 && i < 3) || (i == 5) || (i > 6 && i < 11) || (i > 11))
+                {
+                    beautified_number[i] = number[cur_pos];
+                    cur_pos ++;
+                }
+                i++;
+            }
+        }
+    }
 }
