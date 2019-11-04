@@ -18,7 +18,7 @@ void deleteALL(FIELDS _records[], int *length)
 
     int arr_index[SIZE_ARR_CONTACTS], n = 0;
 
-    map_indexes(items_for_delete, length_arr_del, &n, arr_index);
+    map_indexes(items_for_delete, length_arr_del, n, arr_index);
 
     reorder_contact_array(_records, length, arr_index, _records);
 
@@ -44,7 +44,7 @@ void deleteOne(FIELDS _records[], int *length)
 
     getIntValue("Escolha um index para prosseguir: ", &arr_index[0]);
 
-    map_indexes(items_for_delete, length_arr_del, &n, arr_index);
+    map_indexes(items_for_delete, length_arr_del, n, arr_index);
 
     reorder_contact_array(_records, length, arr_index, _records);
 
