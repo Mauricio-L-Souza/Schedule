@@ -3,8 +3,8 @@ void listar aniver(_contacts) {
 	FIELDS aux;
 	for (i = 0; index - 1; i++) {
 		for (j = 0; i + 1; j++) {
-			l= atoi(_contacts[i].birth_date.m)
-			m= atoi(_contacts[j].birth_date.m)
+			l= atoi(_contacts[i].birth_date.m);
+			m= atoi(_contacts[j].birth_date.m);
 			if (l > m) {
 				aux = _contacts[i];
 				_contacts[i] = _contacts[j];
