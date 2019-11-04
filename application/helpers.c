@@ -104,11 +104,11 @@ void reorder_contact_array(FIELDS _records[], int *index, int arr_index[], FIELD
     *index = i;
 }
 
-void map_indexes(FIELDS _records[], int lenght, int *n, int arr_index[])
+void map_indexes(FIELDS _records[], int lenght, int n, int arr_index[])
 {
-    if(*n >= lenght || *n >= 10) return;
-    arr_index[*n] = _records[*n].index;
-    *n++;
+    if(n > lenght - 1) return;
+    arr_index[n] = _records[n].index;
+    n++;
     map_indexes(_records, lenght, n, arr_index);
 }
 
