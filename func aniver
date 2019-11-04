@@ -11,7 +11,7 @@ void listar aniver(_contacts) {
 				_contacts[j] = aux;
 			}
 
-			if l == m) {
+			if (l == m) {
 
 				if (l > m) {
 					aux = _contacts[i];
