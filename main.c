@@ -37,7 +37,7 @@ int main()
                 _search(_contacts, index);
                 break;
             case 5:
-                ascendingOrder(_contacts,index);
+                list_menu(_contacts, index);
                 fflush(stdin);
                 break;
             case 6:
