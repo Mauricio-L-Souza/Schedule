@@ -2,7 +2,6 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "helpers.h"
 #include "configs.h"
 
 void getStringValue(char *text, char value_to_return[])

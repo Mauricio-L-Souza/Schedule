@@ -1,6 +1,9 @@
 #include <stdlib.h>
+
 #include "helpers.h"
 #include "list.h"
+
+#include "trash.h"
 
 void deleteALL(FIELDS _records[], int *length)
 {

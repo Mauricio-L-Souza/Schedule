@@ -1,4 +1,5 @@
 #include "helpers.h"
+#include "list.h"
 
 void listALL(FIELDS _records[], int tam, int op)
 {

@@ -7,9 +7,9 @@ void deleteALL(FIELDS _records[], int *lenght);
 
 void deleteOne(FIELDS _records[], int *lenght);
 
-void restoreAll(FIELDS _records[], int *lenght);
+void restoreAll(FIELDS _records[], int length);
 
-void restoreOne(FIELDS _records[], int *lenght);
+void restoreOne(FIELDS _records[], int length);
 
 void listContactsInTrash(FIELDS _records[], int length);
 

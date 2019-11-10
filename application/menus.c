@@ -5,6 +5,8 @@
 #include "trash.h"
 #include "app.h"
 
+#include "menus.h"
+
 int main_menu(){
     int op = 0;
     do{
