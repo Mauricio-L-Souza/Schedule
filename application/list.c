@@ -80,6 +80,6 @@ void reorderByIndex(FIELDS _records[], int length)
         i++;
     }
 
-    for(i = 0; i < length; i++) listOne(_records[i], i, 1);
-    wait("");
+    //for(i = 0; i < length; i++) listOne(_records[i], i, 1);
+    //wait("");
 }

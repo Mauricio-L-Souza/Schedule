@@ -63,6 +63,8 @@ void list_menu (FIELDS _records[], int length)
                 break;
             case 4:
                 reorderByIndex(_records, length);
+                reorderByIndex(_records, length);
+                listALL(_records, length, 1);
                 break;
             default:
                 wait("\nA operação escolhida não existe!");
