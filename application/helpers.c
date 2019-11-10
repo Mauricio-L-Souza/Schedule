@@ -117,7 +117,7 @@ void searchData(FIELDS _records[], int lenght, FIELDS _searchedData[], int optio
 {
     char str4search [21] = "";
 
-    getStringValue("Digite o nome que deseja procurar: ", str4search);
+    getStringValue("Digite o nome que deseja procurar ou * para listar todos: ", str4search);
 
     str_to_upper(str4search, str4search);
 

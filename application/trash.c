@@ -42,7 +42,8 @@ void deleteOne(FIELDS _records[], int *length)
 
     listALL(items_for_delete, length_arr_del, 0);
 
-    getIntValue("Escolha um index para prosseguir: ", &arr_index[0]);
+    getIntValue("\nDigite o índice desejado para prosseguir ou -1 para cancelar ", &arr_index[0]);
+    if(arr_index[0] == -1) return;
 
     map_indexes(items_for_delete, length_arr_del, n, arr_index);
 
@@ -80,7 +81,8 @@ void restoreOne(FIELDS _records[], int length)
 
     int i;
 
-    getIntValue("Digite o indice do contado para restaura-lo\n>> ", &i);
+    getIntValue("Digite o indice do contado para restaura-lo ou -1 para cancelar\n>> ", &i);
+    if(i == -1) return ;
 
     _records[i].situation = 0;
 

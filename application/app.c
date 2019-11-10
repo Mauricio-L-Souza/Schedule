@@ -69,7 +69,9 @@ void update(FIELDS _contacts[], int *index)
 
     listALL(_searchedData, length, 0);
 
-    getIntValue("\nDigite o índice desejado para prosseguir: ", &selected);
+    getIntValue("\nDigite o índice desejado para prosseguir ou -1 para cancelar: ", &selected);
+
+    if(selected == -1) return;
 
     system("cls || clear");
 
@@ -138,7 +140,9 @@ void _remove(FIELDS _contacts[], int *index)
 
     listALL(_records, lastItem, 0);
 
-    getIntValue("\nEscolha um deles para prosseguir: ", &selected);
+    getIntValue("\nDigite o índice desejado para prosseguir ou -1 para cancelar: ", &selected);
+
+    if(selected == -1) return;
 
     _records[selected].situation = 1;
     _contacts[_records[selected].index] = _records[selected];//
@@ -174,9 +178,6 @@ void ascendingOrder(FIELDS _contacts[], int index)
 			aux_pos++;
 		}
 	}
-
-	for(i = 0; i< index; i++) listOne(_contacts[i], i, 0);
-	wait("");
 }
 
 void birthdayList(FIELDS _contacts[], int index)
@@ -197,9 +198,6 @@ void birthdayList(FIELDS _contacts[], int index)
 		}
 		i++;
 	}
-
-    for(i = 0; i < index; i++) listOne(_contacts[i], i, 0);
-	wait("");
 }
 
 //ARQUIVOS

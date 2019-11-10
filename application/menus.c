@@ -15,7 +15,7 @@ int main_menu(){
         printf("\n AGENDA \n");
         printf("\n1 - Incluir\n2 - Alterar\n3 - Excluir\n4 - Buscas\n");
         printf("5 - Acessar menu de listagem\n");
-        printf("6 - Acssar lixeira\n");
+        printf("6 - Acessar lixeira\n");
         printf("7 - Sair\n");
         printf("\n==================================================================\n");
 
@@ -54,9 +54,14 @@ void list_menu (FIELDS _records[], int length)
         switch(op){
             case 1:
                 ascendingOrder(_records, length);
+                ascendingOrder(_records, length);
+                listALL(_records, length, 0);
+
                 break;
             case 2:
                 birthdayList(_records, length);
+                birthdayList(_records, length);
+                listALL(_records, length, 0);
                 break;
             case 3:
                 listALL(_records, length, 0);
@@ -65,6 +70,8 @@ void list_menu (FIELDS _records[], int length)
                 reorderByIndex(_records, length);
                 reorderByIndex(_records, length);
                 listALL(_records, length, 1);
+                break;
+            case 5:
                 break;
             default:
                 wait("\nA operação escolhida não existe!");
