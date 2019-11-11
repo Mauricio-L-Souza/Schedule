@@ -8,13 +8,13 @@
 
 
 //GLOBALS
-int index = 0;
+int _index = 0;
 FIELDS _contacts[SIZE_ARR_CONTACTS] = {};
 //END GLOBALS
 
 int main()
 {
-    open(_contacts, &index);
+    open(_contacts, &_index);
 
     int op = 0;
     setlocale(LC_ALL, "Portuguese");
@@ -23,26 +23,26 @@ int main()
         fflush(stdin);
         switch(main_menu()){
             case 1:
-                create(_contacts, &index);
+                create(_contacts, &_index);
                 break;
             case 2:
-                update(_contacts, &index);
-                close(_contacts, index);
+                update(_contacts, &_index);
+                close(_contacts, _index);
                 break;
             case 3:
-                _remove(_contacts, &index);
-                close(_contacts, index);
+                _remove(_contacts, &_index);
+                close(_contacts, _index);
                 break;
             case 4:
-                _search(_contacts, index);
+                _search(_contacts, _index);
                 break;
             case 5:
-                list_menu(_contacts, index);
+                list_menu(_contacts, _index);
                 fflush(stdin);
                 break;
             case 6:
-                trash_menu(_contacts, &index);
-                close(_contacts, index);
+                trash_menu(_contacts, &_index);
+                close(_contacts, _index);
                 break;
             case 7:
                 op = 7;
@@ -50,7 +50,7 @@ int main()
                 break;
         }
     }
-    close(_contacts, index);
+    close(_contacts, _index);
 
     return 0;
 }
