@@ -204,8 +204,6 @@ void birthdayList(FIELDS _contacts[], int index)
 //ARQUIVOS
 void close(FIELDS _records[], int index)
 {
-    printf("%d\n",index);
-    wait("");
     FILE *_file = fopen("_contacts.txtx", "wb");
 
     if(!_file) {
