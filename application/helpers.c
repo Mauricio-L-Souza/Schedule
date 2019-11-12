@@ -118,7 +118,7 @@ void searchData(FIELDS _records[], int lenght, FIELDS _searchedData[], int optio
 
     getStringValue("Digite o nome que deseja procurar ou * para listar todos ou cs para cancelar\n>>> ", str4search);
 
-    if(strcmpi(str4search, "cs") > 0) return;
+    if(strcmpi(str4search, "cs") == 0) return;
 
     *lastItem = 0;
 
