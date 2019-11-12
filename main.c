@@ -24,6 +24,7 @@ int main()
         switch(main_menu()){
             case 1:
                 create(_contacts, &_index);
+                close(_contacts, _index);
                 break;
             case 2:
                 update(_contacts, &_index);
