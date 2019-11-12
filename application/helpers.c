@@ -114,9 +114,15 @@ void map_indexes(FIELDS _records[], int lenght, int n, int arr_index[])
 
 void searchData(FIELDS _records[], int lenght, FIELDS _searchedData[], int option, int *lastItem)
 {
+    *lastItem = -1;
+
     char str4search [21] = "";
 
-    getStringValue("Digite o nome que deseja procurar ou * para listar todos: ", str4search);
+    getStringValue("Digite o nome que deseja procurar ou * para listar todos ou cs para cancelar\n>>> ", str4search);
+
+    if(strcmpi(str4search, "cs") > 0) return;
+
+    *lastItem = 0;
 
     str_to_upper(str4search, str4search);
 
