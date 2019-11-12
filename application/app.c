@@ -25,9 +25,8 @@ void create(FIELDS _contacts[], int *index)
         if(validatePhoneNumber(1, land_line)){
             strcpy(_contacts[*index].land_line, land_line);
             break;
-        }else{
-            wait("O campo telefone fixo deve conter 10 digitos ex.: 9999999999.\nSendo os dois primeiros ddd e os seguites o numero de telefone!\n");
         }
+        wait("O campo telefone fixo deve conter 10 digitos ex.: 9999999999.\nSendo os dois primeiros ddd e os seguites o numero de telefone!\n");
     }while(1);
 
     do{
@@ -37,10 +36,8 @@ void create(FIELDS _contacts[], int *index)
         if(validatePhoneNumber(2, phone_number)){
             strcpy(_contacts[*index].phone_number, phone_number);
             break;
-        }else{
-            wait("O campo telefone fixo deve conter 10 digitos ex.: 9999999999.\nSendo os dois primeiros ddd e os seguites o numero de telefone!\n");
         }
-
+        wait("O campo telefone fixo deve conter 10 digitos ex.: 9999999999.\nSendo os dois primeiros ddd e os seguites o numero de telefone!\n");
     }while(1);
 
     showTypedValues(_contacts[*index], text);
@@ -104,9 +101,8 @@ void update(FIELDS _contacts[], int *index)
             if(validatePhoneNumber(1, land_line)){
                 strcpy(_contacts[selected].land_line, land_line);
                 break;
-            }else{
-                wait("O campo telefone fixo deve conter 10 digitos ex.: 9999999999.\nSendo os dois primeiros ddd e os seguites o numero de telefone!\n");
             }
+            wait("O campo telefone fixo deve conter 10 digitos ex.: 9999999999.\nSendo os dois primeiros ddd e os seguites o numero de telefone!\n");
         }while(1);
     }
 
@@ -119,9 +115,8 @@ void update(FIELDS _contacts[], int *index)
             if(validatePhoneNumber(2, phone_number)){
                 strcpy(_contacts[selected].phone_number, phone_number);
                 break;
-            }else{
-                wait("O campo telefone fixo deve conter 10 digitos ex.: 9999999999.\nSendo os dois primeiros ddd e os seguites o numero de telefone!\n");
             }
+            wait("O campo telefone fixo deve conter 10 digitos ex.: 9999999999.\nSendo os dois primeiros ddd e os seguites o numero de telefone!\n");
         }while(1);
     }
 }
@@ -134,8 +129,7 @@ void _remove(FIELDS _contacts[], int *index)
     searchData(_contacts, *index, _records, 0, &lastItem);
 
     if (lastItem == 0) {
-        printf("Nenhum registro encontrado\n");
-        system("pause");
+        wait("\nNenhum registro encontrado\n");
         return;
     }
 
@@ -155,6 +149,8 @@ void _search(FIELDS _records[], int index)
     int last_index;
 
     searchData(_records, index, _searched, 0, &last_index);
+
+    if(last_index == 0) return;
 
     if(last_index == 0) {
         wait("O que você procura não foi encontrado!");
