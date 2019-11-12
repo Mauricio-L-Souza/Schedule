@@ -146,11 +146,11 @@ void _remove(FIELDS _contacts[], int *index)
 void _search(FIELDS _records[], int index)
 {
     FIELDS _searched[SIZE_SEARCH];
-    int last_index;
+    int last_index = -1;
 
     searchData(_records, index, _searched, 0, &last_index);
 
-    if(last_index == 0) return;
+    if(last_index == -1) return;
 
     if(last_index == 0) {
         wait("O que você procura não foi encontrado!");
