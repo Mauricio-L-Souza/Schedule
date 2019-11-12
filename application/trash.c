@@ -9,9 +9,11 @@ void deleteALL(FIELDS _records[], int *length)
 {
     FIELDS items_for_delete[SIZE_ARR_CONTACTS];
 
-    int length_arr_del = 0;
+    int length_arr_del = -1;
 
     getSearchedData(_records, *length,items_for_delete, 1, &length_arr_del, "*");
+
+    if(length_arr_del == -1) return;
 
     if(length_arr_del == 0){
         wait("A lixeira está vazia!");
@@ -32,9 +34,11 @@ void deleteOne(FIELDS _records[], int *length)
 {
     FIELDS items_for_delete[SIZE_SEARCH];
 
-    int length_arr_del = 0;
+    int length_arr_del = -1;
 
     searchData(_records, *length,items_for_delete, 1, &length_arr_del);
+
+    if(length_arr_del == -1) return;
 
     if (length_arr_del == 0) {
         wait("Nenhum registro encontrado\n");
@@ -71,9 +75,11 @@ void restoreOne(FIELDS _records[], int length)
 {
     FIELDS items_for_restore[SIZE_ARR_CONTACTS];
 
-    int length_arr_res = 0;
+    int length_arr_res = -1;
 
     getSearchedData(_records, length,items_for_restore, 1, &length_arr_res, "*");
+
+    if(length_arr_res == -1) return;
 
     if(length_arr_res == 0){
         wait("A lixeira está vazia!");
