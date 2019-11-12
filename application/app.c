@@ -11,43 +11,28 @@ void create(FIELDS _contacts[], int *index)
 
     showTypedValues(_contacts[*index], text);
 
-    getStringValue("\nNome: ", name);
-    str_to_upper(name, name);
-    strcpy(_contacts[*index].name, name);
+    getName(_contacts[*index].name);
 
     showTypedValues(_contacts[*index], text);
+
     _contacts[*index].birth_date = inputDate();
 
-    do{
-        showTypedValues(_contacts[*index], text);
-        getStringValue("Telefone fixo: ", land_line);
+    showTypedValues(_contacts[*index], text);
 
-        if(validatePhoneNumber(1, land_line)){
-            strcpy(_contacts[*index].land_line, land_line);
-            break;
-        }
-        wait("O campo telefone fixo deve conter 10 digitos ex.: 9999999999.\nSendo os dois primeiros ddd e os seguites o numero de telefone!\n");
-    }while(1);
-
-    do{
-        showTypedValues(_contacts[*index], text);
-        getStringValue("Celular: ", phone_number);
-
-        if(validatePhoneNumber(2, phone_number)){
-            strcpy(_contacts[*index].phone_number, phone_number);
-            break;
-        }
-        wait("O campo telefone fixo deve conter 10 digitos ex.: 9999999999.\nSendo os dois primeiros ddd e os seguites o numero de telefone!\n");
-    }while(1);
+    getLandLine(_contacts[*index].land_line);
 
     showTypedValues(_contacts[*index], text);
-    wait(NULL);
+
+    getPhone(_contacts[*index].phone_number);
+
+    showTypedValues(_contacts[*index], text);
 
     _contacts[*index].situation = 0;
     _contacts[*index].index = *index;
 
     *index = *index + 1;
-    wait("\n\nContato criado com sucesso!");
+
+    wait("\n\nContato criado com sucesso!\n");
 }
 
 void update(FIELDS _contacts[], int *index)
@@ -56,9 +41,11 @@ void update(FIELDS _contacts[], int *index)
 
     FIELDS _searchedData[SIZE_SEARCH] = {};
 
-    int length = 0, selected, op;
+    int length = -1, selected, op;
 
     searchData(_contacts, *index, _searchedData, 0, &length);
+
+    if(length == -1) return;
 
     if(length == 0){
         wait("Nenhum registro encontrado!");
@@ -77,56 +64,37 @@ void update(FIELDS _contacts[], int *index)
     getIntValue("\n\n1 - editar nome\n2 - Editar aniversário\n3 - Editar Telefone fixo\n3 - Editar celular\nDigite a opção desejada\n>> ", &op);
 
     if(op == 1){
-        char name[21] = "";
-
-        getStringValue("Nome: ", name);
-
-        str_to_upper(name, name);
-        strcpy(_contacts[selected].name, name);
+        getName(_contacts[selected].name);
         showTypedValues(_contacts[selected], text);
-
-        wait("\nContato alterado com sucesso!");
     }
 
     if(op == 2){
         _contacts[selected].birth_date = inputDate();
+        showTypedValues(_contacts[selected], text);
     }
 
     if(op == 3){
-        char land_line[12] = "";
-        do{
-            showTypedValues(_contacts[selected], text);
-            getStringValue("Telefone fixo: ", land_line);
-
-            if(validatePhoneNumber(1, land_line)){
-                strcpy(_contacts[selected].land_line, land_line);
-                break;
-            }
-            wait("O campo telefone fixo deve conter 10 digitos ex.: 9999999999.\nSendo os dois primeiros ddd e os seguites o numero de telefone!\n");
-        }while(1);
+        showTypedValues(_contacts[selected], text);
+        getLandLine(_contacts[selected].land_line);
     }
 
     if(op == 4){
-        char phone_number[12] = "";
-        do{
-            showTypedValues(_contacts[selected], text);
-            getStringValue("Celular: ", phone_number);
-
-            if(validatePhoneNumber(2, phone_number)){
-                strcpy(_contacts[selected].phone_number, phone_number);
-                break;
-            }
-            wait("O campo telefone fixo deve conter 10 digitos ex.: 9999999999.\nSendo os dois primeiros ddd e os seguites o numero de telefone!\n");
-        }while(1);
+        showTypedValues(_contacts[selected], text);
+        getPhone(_contacts[selected].phone_number);
     }
+
+    wait("Contato atualizado com sucesso!");
 }
 
 void _remove(FIELDS _contacts[], int *index)
 {
+    system("cls || clear || reset");
 	FIELDS _records[SIZE_SEARCH];
-	int selected = 0, lastItem = 0;
+	int selected = 0, lastItem = -1;
 
     searchData(_contacts, *index, _records, 0, &lastItem);
+
+    if (lastItem == -1) return;
 
     if (lastItem == 0) {
         wait("\nNenhum registro encontrado\n");
@@ -140,7 +108,9 @@ void _remove(FIELDS _contacts[], int *index)
     if(selected == -1) return;
 
     _records[selected].situation = 1;
-    _contacts[_records[selected].index] = _records[selected];//
+    _contacts[_records[selected].index] = _records[selected];
+
+    wait("\n O contato foi deletado com sucesso!");
 }
 
 void _search(FIELDS _records[], int index)
@@ -153,7 +123,7 @@ void _search(FIELDS _records[], int index)
     if(last_index == -1) return;
 
     if(last_index == 0) {
-        wait("O que você procura não foi encontrado!");
+        wait("\nO que você procura não foi encontrado!");
         return;
     }
 
@@ -237,3 +207,42 @@ void open(FIELDS _records[], int *index)
 
     fclose(_file);
 }
+
+void getName(char *name)
+{
+    char _name[21] = "";
+
+    getStringValue("Nome: ", _name);
+
+    str_to_upper(_name, _name);
+    strcpy(name, _name);
+}
+
+void getPhone(char *phone)
+{
+    char phone_number[12] = "";
+    do{
+        getStringValue("Celular: ", phone_number);
+
+        if(validatePhoneNumber(2, phone_number)){
+            strcpy(phone, phone_number);
+            break;
+        }
+        wait("\nO campo telefone fixo deve conter 10 digitos ex.: 9999999999.\nSendo os dois primeiros ddd e os seguites o numero de telefone!\n");
+    }while(1);
+}
+
+void getLandLine(char *landLine)
+{
+    char land_line[12] = "";
+    do{
+        getStringValue("Telefone fixo: ", land_line);
+
+        if(validatePhoneNumber(1, land_line)){
+            strcpy(landLine, land_line);
+            break;
+        }
+        wait("\nO campo telefone fixo deve conter 10 digitos ex.: 9999999999.\nSendo os dois primeiros ddd e os seguites o numero de telefone!\n");
+    }while(1);
+}
+
