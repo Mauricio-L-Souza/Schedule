@@ -137,7 +137,7 @@ void ascendingOrder(FIELDS _contacts[], int index)
 	for (i = 0; i < index; i++) {
         aux_pos = i;
 		for (j = i + 1; j < index; j++) {
-			if (strcmpi(_contacts[i].name, _contacts[j].name) >= 0) {
+			if (strcmp(_contacts[i].name, _contacts[j].name) > 0) {
 				aux = _contacts[i];
 				_contacts[i] = _contacts[j];
 				_contacts[j] = aux;
