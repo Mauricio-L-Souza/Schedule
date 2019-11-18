@@ -132,17 +132,15 @@ void _search(FIELDS _records[], int index)
 
 void ascendingOrder(FIELDS _contacts[], int index)
 {
-    int i, j, aux_pos;
+    int i, j;
 	FIELDS aux;
 	for (i = 0; i < index; i++) {
-        aux_pos = i;
 		for (j = i + 1; j < index; j++) {
 			if (strcmp(_contacts[i].name, _contacts[j].name) > 0) {
 				aux = _contacts[i];
 				_contacts[i] = _contacts[j];
 				_contacts[j] = aux;
 			}
-			aux_pos++;
 		}
 	}
 }
@@ -153,17 +151,14 @@ void birthdayList(FIELDS _contacts[], int index)
 
 	FIELDS aux;
 
-	while (i < index) {
-	    aux_pos = i;
+	for(i = 0; i < index; i++) {
 		for (j = i + 1; j < index; j++) {
-			if (atoi(_contacts[aux_pos].birth_date.m) > atoi(_contacts[j].birth_date.m)) {
-				aux = _contacts[aux_pos];
-				_contacts[aux_pos] = _contacts[j];
+			if (atoi(_contacts[j].birth_date.m) < atoi(_contacts[i].birth_date.m)) {
+				aux = _contacts[i];
+				_contacts[i] = _contacts[j];
 				_contacts[j] = aux;
 			}
-			aux_pos++;
 		}
-		i++;
 	}
 }
 
